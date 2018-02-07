@@ -4,7 +4,7 @@
     <!-- col-sm-12 will make component fill full width on phones, whereas on a tablet or desktop col-md-6 will only take up half -->
     <div class="col-sm-12 col-md-6">
       <!-- new pizza component -->
-
+      <pp-new-pizza></pp-new-pizza>
     </div>
     <div class="col-sm-12 col-md-6">
       <h3>Menu:</h3>
@@ -62,5 +62,10 @@
 </template>
 
 <script>
-export default {};
+import NewPizza from './NewPizza'
+export default {
+  components: {
+    ppNewPizza: NewPizza
+  }
+};
 </script>
