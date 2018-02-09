@@ -4,12 +4,23 @@
     <a class="navbar-brand" href="/">PIZZA PLANET</a> 
     <ul class="navbar-nav">
       <!-- instead of wrapping the router-links in <li> use tag="li" to make the component a list item -->
-      <router-link to="/" tag="li"><a class="nav-link">home</a></router-link>
-      <router-link to="/menu" tag="li"><a class="nav-link">menu</a></router-link>
+      <router-link :to="homeLink" tag="li"><a class="nav-link">home</a></router-link>
+      <router-link :to="menuLink" tag="li"><a class="nav-link">menu</a></router-link>
     </ul>
   </nav>
 </header>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      homeLink: '/',
+      menuLink: '/menu'
+    }
+  }
+}
+</script>
 
 <style> 
   header {

@@ -3,10 +3,12 @@
     <div class="container">
       <pp-header></pp-header>
     </div>
+    
     <div class="container">
       <!-- router-view handles the current route and displays a component depending on the url -->
       <router-view></router-view>
     </div>
+
     <div class="container">
       <pp-footer></pp-footer>
     </div>
@@ -14,16 +16,17 @@
 </template>
 
 <script>
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export default {
   components: {
     ppHeader: Header,
-    ppFooter: Footer,
+    ppFooter: Footer
   }
-}
+};
 </script>
 
 <style>
+
 </style>
