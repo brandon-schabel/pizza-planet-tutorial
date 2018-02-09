@@ -68,8 +68,9 @@
 </template>
 
 <script>
-import NewPizza from './NewPizza'
-import Login from './Login'
+import Login from "./Login"
+import NewPizza from "./NewPizza"
+
 export default {
   components: {
     ppNewPizza: NewPizza,

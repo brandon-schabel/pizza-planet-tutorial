@@ -1,7 +1,5 @@
 <template>
   <div class="row">
-
-    {{ $routes.params.items }}
     <div class="col-sm-12 col-md-6">
       <table class="table table-hover">
         <thead class="thead-default">

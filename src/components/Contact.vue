@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-block">
       <h4 class="card-title">Card title</h4>
-      <p class="card-text">
+      <div class="card-text">
         <address>
           <strong>Pizza Planet</strong><br>
           Address Line 1<br>
@@ -14,7 +14,7 @@
           <strong>Email:</strong>
           <p>contact@pizzaplanet.com</p>
         </address>
-      </p>
+      </div>
     </div>
   </div>
 </template>
