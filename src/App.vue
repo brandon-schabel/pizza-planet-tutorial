@@ -4,7 +4,8 @@
       <pp-header></pp-header>
     </div>
     <div class="container">
-      <pp-admin></pp-admin>
+      <!-- router-view handles the current route and displays a component depending on the url -->
+      <router-view></router-view>
     </div>
     <div class="container">
       <pp-footer></pp-footer>
@@ -15,17 +16,11 @@
 <script>
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from './components/Home';
-import Menu from './components/Menu';
-import Admin from './components/Admin'
 
 export default {
   components: {
     ppHeader: Header,
     ppFooter: Footer,
-    ppHome: Home,
-    ppMenu: Menu,
-    ppAdmin: Admin
   }
 }
 </script>
