@@ -33,6 +33,19 @@ const router = new VueRouter({ // new vue router instance
   mode: 'history' // takes advantage of html5 history mode
 }) 
 
+/* before each example
+router.beforeEach((to,from,next) => {
+  // console.log('nav changed')
+  // next() next() allows the route to load the component, 
+  // if false is passed as arg to next, then it doesn't confirm the nav
+  if(to.path === '/menu') {
+    next()
+  } else {
+    next(false)
+  }
+}) there is also afterEach, args are to and from
+*/
+
 new Vue({
   el: '#app',
   router,  

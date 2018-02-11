@@ -4,7 +4,7 @@
       <div class="background">
         <h1>Welcome to Pizza Planet!</h1>
         <h2>Feeling hungry?</h2>
-        <button class="btn btn-success">Let's Order!</button>
+        <button class="btn btn-success" @click="goToMenu">Let's Order!</button>
       </div>
     </div>
   </div>
@@ -29,3 +29,15 @@
     padding: 20px 0;
   }
 </style>
+<script>
+export default {
+  methods: {
+    goToMenu() {
+      // this.$router.go(1) when called tells browser to go forward(1) or back(-1) a page 
+      // or you can use this.$router.replace('/menu') to reaplce the current url
+      this.$router.push({name: 'menuLink'});
+    }
+  }
+}
+</script>
+
