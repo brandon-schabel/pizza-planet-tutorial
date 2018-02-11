@@ -75,6 +75,26 @@ export default {
   components: {
     ppNewPizza: NewPizza,
     ppLogin: Login
+  },
+  beforeRouteLeave: (to, from, next) => {
+    if(confirm("Have you remembered to log out?") == true) {
+      next();
+    } else {
+      next(false);
+    }
   }
 };
+
+/*
+data() {
+  return {
+    name: 'chris'
+  }
+},
+beforeRouteEnter: (to, from, next) => {
+  //alert('Hi ' + this.name), // returns "Hi undefined"
+  next( vm => { // vm(vue model) gives access to vue instance
+    alert('Hi ' + vm.name) // returns "Hi chris" as expected
+  })
+*/
 </script>

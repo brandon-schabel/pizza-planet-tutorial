@@ -23,7 +23,10 @@ const routes = [
     { path: '/history', name: 'historyLink', component: History },
     { path: '/ordering-guide', name: 'orderingGuideLink', component: OrderingGuide }
   ]},
-  { path: '/admin', name: 'adminLink', component: Admin},
+  { path: '/admin', name: 'adminLink', component: Admin, beforeEnter: (to, from, next) =>{
+    alert('This area is for authorized users only, please login to continue.')
+    next()
+  }},
   { path: '/menu', name: 'menuLink', component: Menu}
 ]
 
@@ -32,6 +35,12 @@ const router = new VueRouter({ // new vue router instance
   routes,
   mode: 'history' // takes advantage of html5 history mode
 }) 
+
+new Vue({
+  el: '#app',
+  router,  
+  render: h => h(App)
+})
 
 /* before each example
 router.beforeEach((to,from,next) => {
@@ -45,9 +54,3 @@ router.beforeEach((to,from,next) => {
   }
 }) there is also afterEach, args are to and from
 */
-
-new Vue({
-  el: '#app',
-  router,  
-  render: h => h(App)
-})
