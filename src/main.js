@@ -1,39 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// app components
-import About from './components/About'
-import Admin from './components/Admin'
 import App from './App.vue'
-import Contact from './components/Contact'
-import Delivery from './components/Delivery'
-import History from './components/History'
-import Home from './components/Home'
-import Menu from './components/Menu'
-import OrderingGuide from './components/OrderingGuide.vue'
-
+import { routes } from './routes'
 Vue.use(VueRouter)
 
-const routes = [
-  { path: '/', name: 'homeLink', component: Home},
-  { path: '*', redirect: '/' }, // any invalid routes will redirect to home, otherwise you could create a 404 component
-  {path: '/about',  name: 'aboutLink', component: About, children: [
-    { path: '/contact', name: 'contactLink', component: Contact },
-    { path: '/delivery', name: 'deliveryLink', component: Delivery }, 
-    { path: '/history', name: 'historyLink', component: History },
-    { path: '/ordering-guide', name: 'orderingGuideLink', component: OrderingGuide }
-  ]},
-  { path: '/admin', name: 'adminLink', component: Admin, beforeEnter: (to, from, next) =>{
-    alert('This area is for authorized users only, please login to continue.')
-    next()
-  }},
-  { path: '/menu', name: 'menuLink', component: Menu}
-]
+
 
 const router = new VueRouter({ // new vue router instance
   // writing routes is the same as routes: routes in es6
   routes,
-  mode: 'history' // takes advantage of html5 history mode
+  mode: 'history', // takes advantage of html5 history mode
+  scrollBehavior(to, from, savedPosition) {
+    if(to.hash) {
+      return {
+        selector: to.hash // if you use back/forward arrows & change routes in browser, it will saved your scroll position
+      }
+    }
+  }
 }) 
 
 new Vue({
@@ -53,4 +37,16 @@ router.beforeEach((to,from,next) => {
     next(false)
   }
 }) there is also afterEach, args are to and from
+
+
+
+scrollBehavior example
+scrollBehavior (to, from, savedPosition) {
+    return {
+      x: 0,
+      y: 200 // will load page by num of pixels from top
+      // you can also use a select for example
+      // selector: .btn and it will take you to the first btn in that component
+    }
+  }
 */
