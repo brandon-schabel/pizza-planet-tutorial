@@ -15,7 +15,6 @@ export const routes = [
       "ordering-guide": OrderingGuide, // passing a name and component to the page at '/', if you go to App, you will see <router-view name="ordering-guide">
       "delivery": Delivery,
       "history": History
-
     }},
   { path: '*', redirect: '/' }, // any invalid routes will redirect to home, otherwise you could create a 404 component
   {path: '/about',  name: 'aboutLink', component: About, children: [
