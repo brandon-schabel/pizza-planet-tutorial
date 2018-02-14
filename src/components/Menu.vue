@@ -50,10 +50,10 @@
           </tbody>
         </table>
         <p>Order Total: </p>
-        <button class="btn btn-success btn-block">Place Order</button>
+        <button class="btn btn-success btn-block" @click="addNewOrder">Place Order</button>
       </div>
       <div v-else>
-        <p>{{ basketText }}</p>
+        <p>{{ basketText }}</p> {{ this.$store.state.orders }}
       </div>
     </div>
   </div>
@@ -70,7 +70,8 @@ export default {
   },
   computed: {
     getMenuItems () {
-      return this.$store.state.menuItems
+      // return this.$store.state.menuItems // this is used to access vuex state directly
+      return this.$store.getters.getMenuItems // use getter to get memnu item 
     }
   },
   methods: {
@@ -95,6 +96,11 @@ export default {
       if(item.quantity === 0) {
         this.RemoveFromBasket(item)
       }
+    },
+    addNewOrder() {
+      this.$store.commit('addOrder', this.basket); // passes content off basket to addOrder mutation in state
+      this.basket = []
+      this.basketText = "Thank you, your order has been placed! :)"
     }
   }
 };
