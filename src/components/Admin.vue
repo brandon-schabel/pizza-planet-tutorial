@@ -15,10 +15,11 @@
             <th>Remove from menu</th>
           </tr>
         </thead>
-        <tbody v-for="item in getMenuItems">
+        <tbody v-for="item in getMenuItems" :key="item['.key']">
           <tr>
             <td>{{item.name}}</td>
-            <td><button class="btn btn-outline-danger btn-sm">x</button></td>
+            <td><button class="btn btn-outline-danger btn-sm"
+                @click="removeMenuItem(item['.key'])">x</button></td>
           </tr>
         </tbody>
       </table>
@@ -29,7 +30,7 @@
     <div class="col-sm-12">
     <h3>Current orders: {{ numberOfOrders }}</h3>
         
-    <table class="table table-sm" v-for="orders in getOrders">
+    <table class="table table-sm" v-for="(orders, index) in getOrders" :key="orders['.key']">
         <thead class="thead-default">
           <tr>
             <th>Item</th>
@@ -41,8 +42,9 @@
 
         <tbody>
           <div class="order-number">
-            <strong><em>Order Number: 1</em></strong>
-            <td><button class="btn btn-outline-danger btn-sm">x</button></td>
+            <strong><em>Order Number: {{ index + 1 }}</em></strong>
+            <td><button class="btn btn-outline-danger btn-sm" 
+                @click="removeOrderItem(orders['.key'])">x</button></td>
           </div>
           <tr v-for="orderItems in orders['.value']">
             <td>{{ orderItems.name }}</td>
@@ -68,6 +70,7 @@
 import Login from "./Login"
 import NewPizza from "./NewPizza"
 import { mapGetters } from 'vuex'
+import { dbMenuRef, dbOrdersRef } from '../firebaseConfig';
 
 export default {
   components: {
@@ -86,6 +89,15 @@ export default {
     // numberOfOrders() {
     //   return this.$store.getters.numberOfOrders
     // }
+  },
+  methods: {
+    removeMenuItem(key) {
+      // remove from menu db in firebase with value of the key that we pass in
+      dbMenuRef.child(key).remove()
+    },
+    removeOrderItem(key) {
+      dbOrdersRef.child(key).remove()
+    }
   },
   beforeRouteLeave: (to, from, next) => {
     if(confirm("Have you remembered to log out?") == true) {
