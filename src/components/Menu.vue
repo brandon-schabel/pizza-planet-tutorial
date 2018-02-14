@@ -61,6 +61,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { dbOrdersRef } from '../firebaseConfig'
+
 export default {
   data() {
     return {
@@ -102,7 +104,8 @@ export default {
       }
     },
     addNewOrder() {
-      this.$store.commit('addOrder', this.basket); // passes content off basket to addOrder mutation in state
+      // this.$store.commit('addOrder', this.basket); // passes content off basket to addOrder mutation in state
+      dbOrdersRef.push(this.basket) // push contents of basket to firebase orders collection
       this.basket = []
       this.basketText = "Thank you, your order has been placed! :)"
     }

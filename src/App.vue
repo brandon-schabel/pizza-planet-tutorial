@@ -32,11 +32,16 @@
 <script>
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { dbMenuRef, dbOrdersRef } from './firebaseConfig';
 
 export default {
   components: {
     ppHeader: Header,
     ppFooter: Footer
+  },
+  created () {
+    this.$store.dispatch('setMenuRef', dbMenuRef) // will bind our store to firebase, calls setMenuRef action in the menu store
+    this.$store.dispatch('setOrdersRef', dbOrdersRef)
   }
 };
 </script>
