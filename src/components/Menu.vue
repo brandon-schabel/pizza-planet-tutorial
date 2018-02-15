@@ -16,7 +16,7 @@
           </tr>
           <tr v-for="option in item.options">
             <td>{{ option.size }}</td>
-            <td>{{ option.price }}</td>
+            <td>{{ option.price | currency }}</td>
             <td><button class="btn btn-sm btn-outline-success" 
                         type="button"
                         @click="addToBasket(item, option)">+</button></td> <!-- push info from current item to array as object -->
@@ -46,11 +46,11 @@
                         type="button"
                         @click="increaseQuantity(item)">+</button></td>
               <td> {{ item.name }} {{ item.size }}"</td>
-              <td>{{ item.price * item.quantity }}</td>
+              <td>{{ item.price * item.quantity | currency }}</td>
             </tr>
           </tbody>
         </table>
-        <p>Order Total: </p>
+        <p>Order Total: {{ total | currency}}</p> <!-- currency is the filter we defined in main.js -->
         <button class="btn btn-success btn-block" @click="addNewOrder">Place Order</button>
       </div>
       <div v-else>
@@ -75,7 +75,15 @@ export default {
   computed: {
     ...mapGetters ([
       'getMenuItems'
-    ])
+    ]),
+    total() {
+      var totalCost = 0;
+      for(var items in this.basket) {
+        var individualItem = this.basket[items];
+        totalCost += individualItem.quantity * individualItem.price;
+      }
+      return totalCost;
+    }
     // getMenuItems () {
       // return this.$store.state.menuItems // this is used to access vuex state directly
       // return this.$store.getters.getMenuItems // use getter to get memnu item 
