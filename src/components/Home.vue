@@ -9,7 +9,6 @@
     </div>
   </div>
 </template>
-
 <style>
   #home {
     background: url('../assets/pizza.jpg');

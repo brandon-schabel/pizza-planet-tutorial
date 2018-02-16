@@ -25,6 +25,9 @@ Vue.filter('currency', function(val) { // 'currency' is the filter tag, second a
   return Accounting.formatMoney(val);
 })
 
+// Vue.component('global-components', () => import('./components/Menu.vue')) // when called webpack will asynchronously load a component using AJAX
+
+
 new Vue({
   el: '#app',
   router,
@@ -55,4 +58,20 @@ scrollBehavior (to, from, savedPosition) {
       // selector: .btn and it will take you to the first btn in that component
     }
   }
+
+
+
+global component example
+Vue.component('global-components', {
+  template: '<div>A Global Component</div>'
+}) // a global component that can be used anywhere in the app in this case using <global-components></global-components>
+
+
+Vue.component('global-components', function(resolve, reject) {
+  setTimeout(function () {
+    resolve({
+      template: '<div>A global component</div>'
+    })
+  }, 2000) // loads a global component asynchronously 
+})
 */
