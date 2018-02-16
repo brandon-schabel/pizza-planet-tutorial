@@ -16,3 +16,8 @@ npm run build
 ```
 
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+Course Link:
+https://www.udemy.com/vuejs-build-a-full-stack-app-with-firebase-vuex-router/learn/v4/overview
+
